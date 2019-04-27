@@ -1,0 +1,80 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,700,900");
+body {
+  background: #906dbe url(http://www.graphicartsunit.com/images/noise.png);
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
+  text-align: center;
+  letter-spacing: 0.08em;
+}
+
+div {
+  padding: 5em 0;
+  text-align: center;
+  z-index: 0;
+  position: relative;
+}
+
+div:nth-child(1) {
+  background: #ac87c6 url(http://www.graphicartsunit.com/images/noise.png);
+}
+div:nth-child(2) {
+  background: #9d73be  url(http://www.graphicartsunit.com/images/noise.png);
+}
+div:nth-child(3) {
+  background: #906dbe url(http://www.graphicartsunit.com/images/noise.png);
+}
+
+.btn {
+  font-family: lato,sans-serif;
+  font-weight: bold;
+  font-size: 1em;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  color: #03384b;
+  display: inline-block;
+  padding: 20px 40px 20px 40px;
+  position: relative;
+  border: 3px solid #03384b;
+}
+
+.btn:before {
+  border: 3px solid #f9f6f1;
+  background: url(http://www.graphicartsunit.com/images/noise2.png);
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.button-1 {
+  border-radius: 100em;
+}
+.button-1:before {
+  border-radius: 100em;
+  left: 2px;
+  top: 1px;
+}
+
+.button-2 {
+  border-radius: 100em;
+}
+.button-2:before {
+  border-radius: 100em;
+  left: 2px;
+  top: 1px;
+}
+
+.button-3 {
+  border-radius: 100em;
+}
+.button-3:before {
+  border-radius: 100em;
+  left: 2px;
+  top: 1px;
+}
+
+.btn:hover {
+  color:#32c7bc;
+  border: 4px solid #32c7bc;
+}

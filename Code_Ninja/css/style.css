@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,700,900");
 body {
-  background: #4e2668 url("http://www.graphicartsunit.com/images/noise.png");
+  background:#4e2668 url("http://www.graphicartsunit.com/images/noise.png");
   margin: 0;
   font-family: 'Raleway', sans-serif;
   text-align: center;
@@ -9,6 +9,7 @@ body {
 
  /* Landing Page Animation */
 .container {
+  background:url("http://www.graphicartsunit.com/images/noise.png");
   position: absolute;
   width: 100vw;
   height: 100vh;

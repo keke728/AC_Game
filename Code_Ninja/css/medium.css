@@ -1,4 +1,108 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,700,900");
+
+.input-switch {
+  width: auto;
+  display: block;
+  position: relative;
+  margin: 60px 30px 30px 0px;
+}
+.input-switch .prompt {
+  display: inline-block;
+  margin-top: 10px;
+}
+.input-switch .well {
+  background: white;
+  height: 20px;
+  width: 65px;
+  position: absolute;
+  right: 50px;
+  top: 7px;
+  border-radius: 10px;
+  box-shadow: inset 0 10px 0 rgba(0, 0, 0, 0.);
+  border: 1px solid #906dbe;
+  cursor: pointer;
+}
+.input-switch #toggle {
+  opacity: 0;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  height: 29px;
+  width: 140px;
+  background: transparent;
+  position: absolute;
+  right: 0px;
+  top: 3px;
+  cursor: pointer;
+  z-index: 100;
+  color: tranparent;
+}
+.input-switch #toggle:after {
+  content: '';
+  background-color: transparent;
+  height: 40px;
+  width: 80px;
+  position: absolute;
+  left: 30px;
+  top: -5px;
+}
+.input-switch #toggle ~ div.input:before {
+  content: "\0261D";
+  position: absolute;
+  right: 80px;
+  top: -10px;
+  font-size: 45px;
+  z-index: 1;
+  color: #906dbe;
+  -moz-transition: all 0.25s ease-out;
+  -webkit-transition: all 0.25s ease-out;
+  -o-transition: all 0.25s ease-out;
+  transition: all 0.25s ease-out;
+}
+.input-switch #toggle:checked {
+  right: 0px;
+}
+.input-switch #toggle:checked:after {
+  left: -80px;
+}
+.input-switch #toggle:checked ~ div.input:before {
+  content: '\01F5B1';
+  top: -10px;
+  right: 41px;
+}
+.input-switch #toggle:checked ~ div.visible {
+  opacity: 1;
+  max-height: 900px;
+  overflow: visible;
+}
+.input-switch #toggle ~ label:before {
+  content: "Swipe";
+  position: absolute;
+  color: #800080;
+  left: -60px;
+  top: 0px;
+  font-size: 15px;
+  font-weight: bold;
+}
+.input-switch #toggle ~ label:after {
+  content: "Click";
+  position: absolute;
+  color:#ac87c6;
+  left: 70px;
+  top: 0px;
+  font-size: 15px;
+  font-weight: bold;
+}
+.input-switch #toggle:checked ~ label:before {
+  color: #ac87c6;
+}
+.input-switch #toggle:checked ~ label:after {
+  color: #800080;
+}
+
 body {
   background: #9d73be url(http://www.graphicartsunit.com/images/noise.png);
   margin: 0;

@@ -44,6 +44,8 @@ var atom_blocks = [];
 var angular_blocks = [];
 var code_block;
 var bomb_block;
+var restart_label;
+var finalLabel;
 
 
 function create() {
@@ -63,7 +65,7 @@ function create() {
 	slashes = game.add.graphics(0, 0);
 	slashes.lineStyle(2, 0x0000FF, 1);
 
-	scoreLabel = game.add.text(10,10,'Tip: get the green ones!');
+	scoreLabel = game.add.text(10,10,'Tip: Avoid the bombs!');
 	scoreLabel.fill = 'white';
 
 	emitter = game.add.emitter(0, 0, 300);
@@ -82,8 +84,8 @@ function createGroup (numItems, sprite) {
 	group.physicsBodyType = Phaser.Physics.ARCADE;
 	group.createMultiple(numItems, sprite, [0,19,20,42,52,53,12,15,33]);
 	// sprite.width = 40; sprite.height = 40;
-	group.setAll('scale.x', 2);
-	group.setAll('scale.y', 2);
+	group.setAll('scale.x', 2.5);
+	group.setAll('scale.y', 2.5);
 	group.setAll('checkWorldBounds', true);
 	group.setAll('outOfBoundsKill', true);
 	// good_objects = group.createMultiple(4, sprite1);
@@ -194,13 +196,28 @@ function resetScore() {
 	good_objects.forEachExists(killFruit);
 	bad_objects.forEachExists(killFruit);
 
-	score = 0;
-	scoreLabel.text = 'Game Over!\nHigh Score: '+highscore;
+
+	good_objects.destroy();
+	bad_objects.destroy();
+	finalLabel = game.add.text(w/2, h/2-200,'Game Over!\nHigh Score: '+highscore+'\nYour Score: '+score, { font: '30px Arial', fill: '#fff' });
+	finalLabel.fill = 'white';
+	restart_label = game.add.text(w/2, h/2, 'Restart', { font: '60px Arial', fill: '#fff' });
+    restart_label.inputEnabled = true;
+		restart_label.events.onInputUp.add(reviveAll);
 	// game.destroy();
 	// Retrieve
 }
 
 function render() {
+}
+
+function reviveAll() {
+	score = 0;
+		restart_label.destroy();
+		scoreLabel.destroy();
+		finalLabel.destroy();
+    create();
+
 }
 
 function killFruit(fruit) {
@@ -211,7 +228,5 @@ function killFruit(fruit) {
 	fruit.kill();
 	points = [];
 	score++;
-	good_objects.destroy();
-	bad_objects.destroy();
 	scoreLabel.text = 'Score: ' + score;
 }

@@ -206,7 +206,7 @@ function resetScore() {
 	// restart_label = game.add.text(w/2-150, h/2, 'Restart', { font: '60px Arial', fill: '#fff' });
   //   restart_label.inputEnabled = true;
 	// 	restart_label.events.onInputUp.add(reviveAll);
-		restart_label = game.add.button(w/2-150, h/2-100, 'restart', reviveAll, this, 0, 0, 0);
+		restart_label = game.add.button(w/2-120, h/2-90, 'restart', reviveAll, this, 0, 0, 0);
 }
 
 function render() {

@@ -24,9 +24,11 @@ function preload() {
 	game.load.image('angular_s', '../icon/angular_s.png');
 	game.load.image('android_s', '../icon/android_s.png');
 	game.load.image('bomb', '../icon/Bomb.png');
+	game.load.image('restart', '../icon/restart.png');
 	game.load.spritesheet('code_icons', '../icon/vendor-icons.png', 32, 32);
 	game.load.spritesheet('bomb-sprite', '../icon/bomb-sprite.png', 32, 42);
 	game.load.spritesheet('veggies', '../icon/iconninja-sprites.png', 50, 50);
+	game.load.image("background", "http://www.graphicartsunit.com/images/noise.png");
 }
 
 var good_objects,
@@ -53,7 +55,6 @@ function create() {
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 	game.physics.arcade.gravity.y = 300;
 	game.stage.backgroundColor = '#ac87c6';
-	game.load.image("background", "http://www.graphicartsunit.com/images/noise.png");
 	code_block = 'code_icons';
 	android_blocks.push('android_l');
 	android_blocks.push('android_s');
@@ -199,13 +200,13 @@ function resetScore() {
 
 	good_objects.destroy();
 	bad_objects.destroy();
-	finalLabel = game.add.text(w/2, h/2-200,'Game Over!\nHigh Score: '+highscore+'\nYour Score: '+score, { font: '30px Arial', fill: '#fff' });
+	scoreLabel.destroy();
+	finalLabel = game.add.text(w/2-150, h/2-200,'Game Over!\nYour Score: '+score, { font: '30px Arial', fill: '#fff' });
 	finalLabel.fill = 'white';
-	restart_label = game.add.text(w/2, h/2, 'Restart', { font: '60px Arial', fill: '#fff' });
-    restart_label.inputEnabled = true;
-		restart_label.events.onInputUp.add(reviveAll);
-	// game.destroy();
-	// Retrieve
+	// restart_label = game.add.text(w/2-150, h/2, 'Restart', { font: '60px Arial', fill: '#fff' });
+  //   restart_label.inputEnabled = true;
+	// 	restart_label.events.onInputUp.add(reviveAll);
+		restart_label = game.add.button(w/2-150, h/2-100, 'restart', reviveAll, this, 0, 0, 0);
 }
 
 function render() {
@@ -214,9 +215,9 @@ function render() {
 function reviveAll() {
 	score = 0;
 		restart_label.destroy();
-		scoreLabel.destroy();
 		finalLabel.destroy();
     create();
+	// window.location = "landing.html";
 
 }
 

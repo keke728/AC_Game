@@ -2,7 +2,6 @@ $(document).ready(function(){
   bgmSound();
 });
 
-
 function bgmSound(){
   var sound = document.getElementById('bgmAudio');
   sound.volume = 0.3;
@@ -62,7 +61,7 @@ function create() {
   // bomb_block.push('bomb');
 	bomb_block = 'bomb-sprite';
 	good_objects = createGroup(1, code_block);
-	bad_objects = createGroup1(2, bomb_block);
+	bad_objects = createGroup1(1, bomb_block);
 
 	slashes = game.add.graphics(0, 0);
 	slashes.lineStyle(2, 0x0000FF, 1);
@@ -215,10 +214,11 @@ function render() {
 
 function reviveAll() {
 	score = 0;
+	
 		restart_label.destroy();
 		finalLabel.destroy();
-    create();
-	// window.location = "landing.html";
+    // create();
+	window.location = "landing.html";
 
 }
 

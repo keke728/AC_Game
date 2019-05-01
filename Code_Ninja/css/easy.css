@@ -1,10 +1,20 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,700,900");
 
+#home {
+  display: block;
+  position: relative;
+  margin: 50px 30px 0px 1300px;
+}
+
+.fontLoader {
+   position: absolute;
+}
+
 .input-switch {
   width: auto;
   display: block;
   position: relative;
-  margin: 60px 30px 30px 0px;
+  margin: 100px 0px 0px 0px;
 }
 .input-switch .prompt {
   display: inline-block;

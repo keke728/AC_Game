@@ -1,5 +1,17 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,700,900");
 
+#home {
+  display: block;
+  position: relative;
+  margin: 50px 30px 0px 1300px;
+}
+
+.fontLoader {
+   position: absolute;
+   left: -1000px;
+   visibility: hidden;
+}
+
 .input-switch {
   width: auto;
   display: block;

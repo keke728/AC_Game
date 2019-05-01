@@ -1,0 +1,1 @@
+Code NinjaIntroduction: In this game, we adapted the classic game Fruit Ninja to be an accessible Code Ninja game using Phaser.js, which could be played with the eye tracker.Instruction: You can run this game on any device by visiting: https://keke728.github.io/Input/Project2/, or by using the zip file and running it on a local server.

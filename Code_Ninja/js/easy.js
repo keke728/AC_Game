@@ -52,7 +52,8 @@ var code_block;
 var bomb_block;
 var restart_label;
 var finalLabel;
-
+var mediumLabel;
+var hardLabel;
 
 function create() {
 
@@ -64,7 +65,7 @@ function create() {
 	android_blocks.push('android_s');
   // bomb_block.push('bomb');
 	bomb_block = 'bomb-sprite';
-	good_objects = createGroup(1, code_block);
+	good_objects = createGroupEasy(1, code_block);
 	bad_objects = createGroup1(1, bomb_block);
 
 	slashes = game.add.graphics(0, 0);
@@ -83,11 +84,95 @@ function create() {
 }
 
 
-function createGroup (numItems, sprite) {
+function createMedium() {
+
+	game.physics.startSystem(Phaser.Physics.ARCADE);
+	game.physics.arcade.gravity.y = 400;
+	game.stage.backgroundColor = '#ac87c6';
+	code_block = 'code_icons';
+	android_blocks.push('android_l');
+	android_blocks.push('android_s');
+  // bomb_block.push('bomb');
+	bomb_block = 'bomb-sprite';
+	good_objects = createGroupMedium(1, code_block);
+	bad_objects = createGroup1(4, bomb_block);
+
+	slashes = game.add.graphics(0, 0);
+	slashes.lineStyle(2, 0x0000FF, 1);
+
+	scoreLabel = game.add.text(10,10,'Tip: Avoid the bombs!');
+	scoreLabel.fill = 'white';
+
+	emitter = game.add.emitter(0, 0, 300);
+	emitter.makeParticles('veggies', [0,1,2,3,4], 30);
+		// game.cache.getBitmapData('parts'));
+	emitter.gravity = 300;
+		emitter.setXSpeed(-400,400);
+	// emitter.setYSpeed(-400,400);
+	throwObject();
+}
+
+function createHard() {
+
+	game.physics.startSystem(Phaser.Physics.ARCADE);
+	game.physics.arcade.gravity.y = 500;
+	game.stage.backgroundColor = '#ac87c6';
+	code_block = 'code_icons';
+	android_blocks.push('android_l');
+	android_blocks.push('android_s');
+  // bomb_block.push('bomb');
+	bomb_block = 'bomb-sprite';
+	good_objects = createGroupHard(1, code_block);
+	bad_objects = createGroup1(9, bomb_block);
+
+	slashes = game.add.graphics(0, 0);
+	slashes.lineStyle(2, 0x0000FF, 1);
+
+	scoreLabel = game.add.text(10,10,'Tip: Avoid the bombs!');
+	scoreLabel.fill = 'white';
+
+	emitter = game.add.emitter(0, 0, 300);
+	emitter.makeParticles('veggies', [0,1,2,3,4], 30);
+		// game.cache.getBitmapData('parts'));
+	emitter.gravity = 300;
+		emitter.setXSpeed(-400,400);
+	// emitter.setYSpeed(-400,400);
+	throwObject();
+}
+
+function createGroupEasy (numItems, sprite) {
 	var group = game.add.group();
 	group.enableBody = true;
 	group.physicsBodyType = Phaser.Physics.ARCADE;
-	group.createMultiple(numItems, sprite, [0,19,20,42,52,53,12,15,33]);
+	group.createMultiple(numItems, sprite, [19,20,42,52,53,12,15,33]);
+	// sprite.width = 40; sprite.height = 40;
+	group.setAll('scale.x', 2.5);
+	group.setAll('scale.y', 2.5);
+	group.setAll('checkWorldBounds', true);
+	group.setAll('outOfBoundsKill', true);
+	// good_objects = group.createMultiple(4, sprite1);
+	return group;
+}
+
+function createGroupMedium(numItems, sprite) {
+	var group = game.add.group();
+	group.enableBody = true;
+	group.physicsBodyType = Phaser.Physics.ARCADE;
+	group.createMultiple(numItems, sprite, [18,41,38,6,2,28,31,48]);
+	// sprite.width = 40; sprite.height = 40;
+	group.setAll('scale.x', 2.5);
+	group.setAll('scale.y', 2.5);
+	group.setAll('checkWorldBounds', true);
+	group.setAll('outOfBoundsKill', true);
+	// good_objects = group.createMultiple(4, sprite1);
+	return group;
+}
+
+function createGroupHard(numItems, sprite) {
+	var group = game.add.group();
+	group.enableBody = true;
+	group.physicsBodyType = Phaser.Physics.ARCADE;
+	group.createMultiple(numItems, sprite, [8,39,61,33, 11,18,20,42,52,12,15]);
 	// sprite.width = 40; sprite.height = 40;
 	group.setAll('scale.x', 2.5);
 	group.setAll('scale.y', 2.5);
@@ -207,9 +292,14 @@ function resetScore() {
 	scoreLabel.destroy();
 	finalLabel = game.add.text(w/2-150, h/2-200,'Game Over!\nYour Score: '+score, { font: '30px Arial', fill: '#fff' });
 	finalLabel.fill = 'white';
-	// restart_label = game.add.text(w/2-150, h/2, 'Restart', { font: '60px Arial', fill: '#fff' });
-  //   restart_label.inputEnabled = true;
-	// 	restart_label.events.onInputUp.add(reviveAll);
+	mediumLabel = game.add.text(w/2-750, h/2-300, 'MEDIUM LEVEL', { font: '60px Arial', fill: '#800080' });
+    mediumLabel.inputEnabled = true;
+		mediumLabel.events.onInputUp.add(reviveMedium);
+
+		hardLabel = game.add.text(w/2+250, h/2-300, 'HARD LEVEL', { font: '60px Arial', fill: '#800080' });
+	    hardLabel.inputEnabled = true;
+			hardLabel.events.onInputUp.add(reviveHard);
+
 		restart_label = game.add.button(w/2-120, h/2-90, 'restart', reviveAll, this, 0, 0, 0);
 }
 
@@ -221,9 +311,35 @@ function reviveAll() {
 
 		restart_label.destroy();
 		finalLabel.destroy();
-    // create();
-		game.destroy();
-	window.location = "landing.html";
+		mediumLabel.destroy();
+		hardLabel.destroy();
+    create();
+		// game.destroy();
+	// window.location = "landing.html";
+
+}
+
+
+function reviveMedium() {
+	score = 0;
+		restart_label.destroy();
+		finalLabel.destroy();
+		mediumLabel.destroy();
+		hardLabel.destroy();
+    createMedium();
+	// window.location = "landing.html";
+
+}
+
+
+function reviveHard() {
+	score = 0;
+		restart_label.destroy();
+		finalLabel.destroy();
+		mediumLabel.destroy();
+		hardLabel.destroy();
+    createHard();
+	// window.location = "landing.html";
 
 }
 

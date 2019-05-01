@@ -2,6 +2,10 @@ $(document).ready(function(){
   bgmSound();
 });
 
+$('#home').click(function(){
+ window.location = "landing.html"
+});
+
 function bgmSound(){
   var sound = document.getElementById('bgmAudio');
   sound.volume = 0.3;
@@ -214,10 +218,11 @@ function render() {
 
 function reviveAll() {
 	score = 0;
-	
+
 		restart_label.destroy();
 		finalLabel.destroy();
     // create();
+		game.destroy();
 	window.location = "landing.html";
 
 }
